@@ -1,3 +1,6 @@
 # dsaDaily
-#### The purpose of this repository is to keep track of my daily learning challenges. Daily, I will upload my learning to engage myself in constructive manner of learning.
-***I also want to share this with my peers.***
+#### This repository contains Data Structures and Algorithms in CPP. I will post different problems and their solutions I have encountered while practicing on various platforms. I'll also try to explain the reasoning behind the approaches from my perspective.
+
+*My motive is to share this repo with my peers. Moreover, I want to maintain a list of problems that have been solved.*
+
+###### :open_hands: *You can raise issues if you find any mistakes or have suggestions. It will be most welcome.* 
