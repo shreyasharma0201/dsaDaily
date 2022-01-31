@@ -1,45 +1,53 @@
 class Solution {
 public:
-    
-    void dfs(TreeNode* t, vector<int>& l){
-        if(t == NULL) return;
-        if(t->left != NULL)
-            return dfs(t, l);
-        if(t->right != NULL)
-            return dfs(t, l);
-        l.push_back(t->val);
+	//helper funtion to in-order traverse a BST
+    void inOrderTraverse(TreeNode *root, vector<int>& vec)
+    {
+        if(root)
+	    {
+		    inOrderTraverse(root->left, vec);
+		    vec.push_back(root->val);
+		    inOrderTraverse(root->right, vec);
+
+	    }
     }
+	//helper function to merge two sorted vectors into one sorted vector
+    void mergeVectors(vector<int> vec1, vector<int> vec2, vector<int>& mergedVectors)
+    {
+        int i = 0, j = 0, k = 0; 
+
+        // Traverse both array 
+        while (i < vec1.size() && j < vec2.size()) 
+        { 
+        
+            if (vec1[i] < vec2[j]) 
+                mergedVectors[k++] = vec1[i++]; 
+            else
+                mergedVectors[k++] = vec2[j++]; 
+        } 
+//   don't add another else if becoz of equal numbers in two vectors.
     
-    void merge(vector<int> l1, vector<int> l2, vector<int>& l3){
-        int p1 = 0, p2 = 0, n1 = l1.size(), n2 = l1.size(); 
-        while(p1 < n1 && p2 < n2){
-            if(l1[p1] < l2[p2]){
-                l3.push_back(l1[p1]);
-                p1++;
-            }
-            else if(l1[p1] > l2[p2]){
-                l3.push_back(l2[p2]);
-                p2++;
-            }else{
-                l3.push_back(l1[p1]);
-                l3.push_back(l2[p2]);
-                p1++;
-                p2++;
-            }
-        }
-        while(p1 < n1){
-            l3.push_back(l1[p1]);
-        }
-        while(p2 < n2){
-            l3.push_back(l2[p2]);
-        }
-    }
+        while (i < vec1.size()) 
+            mergedVectors[k++] = vec1[i++]; 
+  
     
-    vector<int> getAllElements(TreeNode* root1, TreeNode* root2) {
-        vector<int> l1, l2, l3;
-        dfs(root1, l1);
-        dfs(root2, l2);
-        merge(l1, l2, l3);
-        return l3;
+        while (j < vec2.size()) 
+            mergedVectors[k++] = vec2[j++]; 
+        
+        
+    } 
+    
+    vector<int> getAllElements(TreeNode* root1, TreeNode* root2)
+    {
+        vector<int> tree1, tree2;
+		//in-order traverse both trees, now tree1 has 1st tree's elements sorted and tree2 has 2nd tree's elements sorted
+        inOrderTraverse(root1, tree1);
+        inOrderTraverse(root2, tree2);
+        
+        vector<int> mergedVectors(tree1.size() + tree2.size());
+		//merge tree1 and tree2 into one merged sorted vector
+        mergeVectors(tree1, tree2, mergedVectors);
+        return  mergedVectors;
+        
     }
 };
